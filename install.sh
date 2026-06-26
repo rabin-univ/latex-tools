@@ -43,7 +43,7 @@ if [ -z "$DOWNLOAD_URL" ]; then
 fi
 
 echo "  Downloading: $ASSET"
-curl -fsSL "$DOWNLOAD_URL" -o "/tmp/${BINARY_NAME}"
+curl -L --progress-bar "$DOWNLOAD_URL" -o "/tmp/${BINARY_NAME}"
 chmod +x "/tmp/${BINARY_NAME}"
 
 # install to ~/.local/bin (no sudo needed)

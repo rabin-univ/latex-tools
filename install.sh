@@ -3,7 +3,7 @@ set -e
 
 REPO="rabin-univ/latex-tools"
 BINARY_NAME="latex-tools"
-INSTALL_DIR="/usr/local/bin"
+INSTALL_DIR="$HOME/.local/bin"
 
 echo ""
 echo "  LaTeX Tools — by Mahbub Alam Rabin, BUET"
@@ -46,17 +46,29 @@ echo "  Downloading: $ASSET"
 curl -fsSL "$DOWNLOAD_URL" -o "/tmp/${BINARY_NAME}"
 chmod +x "/tmp/${BINARY_NAME}"
 
-# install to /usr/local/bin (may need sudo)
-if [ -w "$INSTALL_DIR" ]; then
-    mv "/tmp/${BINARY_NAME}" "${INSTALL_DIR}/${BINARY_NAME}"
-else
-    echo "  (sudo required to install to ${INSTALL_DIR})"
-    sudo mv "/tmp/${BINARY_NAME}" "${INSTALL_DIR}/${BINARY_NAME}"
+# install to ~/.local/bin (no sudo needed)
+mkdir -p "$INSTALL_DIR"
+mv "/tmp/${BINARY_NAME}" "${INSTALL_DIR}/${BINARY_NAME}"
+
+# add to PATH if not already there
+SHELL_RC=""
+if [ -f "$HOME/.zshrc" ]; then SHELL_RC="$HOME/.zshrc"
+elif [ -f "$HOME/.bashrc" ]; then SHELL_RC="$HOME/.bashrc"
+fi
+
+if [ -n "$SHELL_RC" ] && ! grep -q 'HOME/.local/bin' "$SHELL_RC"; then
+    echo '' >> "$SHELL_RC"
+    echo '# latex-tools' >> "$SHELL_RC"
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_RC"
+    echo "  Added ~/.local/bin to PATH in $SHELL_RC"
 fi
 
 echo ""
 echo "  ✓ Installed to ${INSTALL_DIR}/${BINARY_NAME}"
 echo ""
-echo "  Usage: latex-tools"
-echo "  Run from inside your LaTeX project folder."
+echo "  Run this once to activate:"
+echo "    source ${SHELL_RC:-~/.zshrc}"
+echo ""
+echo "  Then use from any LaTeX project folder:"
+echo "    latex-tools"
 echo ""

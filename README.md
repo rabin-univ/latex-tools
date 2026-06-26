@@ -1,6 +1,6 @@
 # LaTeX Tools
 
-**Six tools in one** for LaTeX research paper workflows — built for review papers with large bibliographies.
+**Six tools in one** for LaTeX research paper workflows; built for review papers with large bibliographies.
 
 > Developed by **Mahbub Alam Rabin**  
 > Department of Nanomaterials & Ceramic Engineering, BUET

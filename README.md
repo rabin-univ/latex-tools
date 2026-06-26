@@ -1,6 +1,7 @@
 # LaTeX Tools
 
 **Six tools in one** for LaTeX research paper workflows; built for review papers with large bibliographies.
+**Linux, macOS (apple silicon), windows compatible.
 
 > Developed by **Mahbub Alam Rabin**  
 > Department of Nanomaterials & Ceramic Engineering, BUET

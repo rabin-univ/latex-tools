@@ -70,6 +70,14 @@ latex_tools_output_2026-06-27_15-10-42/
 
 ---
 
+## Uninstall
+
+```bash
+rm ~/.local/bin/latex-tools
+```
+
+---
+
 ## Notes
 
 - Tool 4 (DOI Validator) requires an internet connection
